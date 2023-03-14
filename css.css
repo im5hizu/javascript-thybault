@@ -1,0 +1,23 @@
+header nav ul li {
+    list-style: none;
+}
+
+.popup {
+    width: 30%;
+    height: 50%;
+    background-color: blue;
+    position: absolute;
+    left: 35%;
+    top: 25%;
+}
+
+.closeBtn {
+    background: blue;
+    border: none;
+    position: absolute;
+    left: 63%;
+    top: 28%;
+}
+.closeBtn:hover{
+    cursor: pointer;
+}
