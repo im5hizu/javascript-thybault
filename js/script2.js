@@ -1,43 +1,29 @@
 const body = document.querySelector('body');
 const divHtml = `<div></div>`;
 const btnHtml = `<button>Cliquez-moi!</button>`;
-const popupHtml = `<p>Ceci est une popup.</p>`;
-const closeBtnHtml = `<button>X</button>`;
+const popupHtml = `<div class="popup"><p>Ceci est une popup.</p><button class="closeBtn">X</button></div>`;
+
 body.insertAdjacentHTML('afterbegin', divHtml);
 
-const divBouton = document.querySelector('body div');
-divBouton.insertAdjacentHTML("afterbegin", btnHtml);
+const div = document.querySelector('body div');
+div.insertAdjacentHTML("afterbegin", btnHtml);
 const btn = document.querySelector('body div button')
 
-function onClick(btn) {
-    divBouton.insertAdjacentHTML("beforeend", popupHtml + closeBtnHtml);
-    divAtt = document.createAttribute('id');
-    divAtt.value = 'btnDiv';
-    document.querySelector('body div').setAttributeNode(divAtt);
+function onClick() {
+  div.insertAdjacentHTML("beforeend", popupHtml);
 
-    const popupAtt = document.createAttribute('class');
-    const closeBtnAtt = document.createAttribute('class');
-    popupAtt.value = "popup";
-    closeBtnAtt.value = 'closeBtn';
-    const closeBtn = document.querySelector('#btnDiv').lastChild;
-    closeBtn.setAttributeNode(closeBtnAtt)
+  const popup = document.querySelector('.popup');
+  popup.style.display = "flex";
+  popup.style.justifyContent = "center";
+  popup.style.alignItems = "center";
 
-    const pText = document.querySelector('#btnDiv p');
-    pText.setAttributeNode(popupAtt);
-    pText.style.display = "flex";
-    pText.style.justifyContent = "center";
-    pText.style.alignItems = "center";
+  const closeBtn = document.querySelector('.closeBtn');
 
-    function closeClick(closeBtn) {
-        divBouton.removeChild(pText);
-        divBouton.removeChild(closeBtn);
-    }
-
-    closeBtn.addEventListener('click', () => {
-        closeClick(closeBtn)
-    })
+  closeBtn.addEventListener('click', () => {
+    div.removeChild(popup);
+  })
 }
 
 btn.addEventListener('click', () => {
-    onClick(btn)
+  onClick()
 })

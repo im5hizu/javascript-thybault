@@ -10,13 +10,20 @@ header nav ul li {
     left: 35%;
     top: 25%;
 }
+.popup p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
 
 .closeBtn {
     background: blue;
     border: none;
     position: absolute;
-    left: 63%;
-    top: 28%;
+    left: 90%;
+    top: 5%;
 }
 .closeBtn:hover{
     cursor: pointer;
