@@ -1,31 +1,43 @@
-const btn = document.querySelector('#btn button');
-function onClick(btn){;
-    const popupHtml = `<p>Ceci est une popup.</p>`;
-    const closeBtnHtml = `<button>X</button>`;
-    const header = document.querySelector('header');
-    const divBouton = document.querySelector('#btn');
-    const divBtn = header.firstElementChild;
+const body = document.querySelector('body');
+const divHtml = `<div></div>`;
+const btnHtml = `<button>Cliquez-moi!</button>`;
+const popupHtml = `<p>Ceci est une popup.</p>`;
+const closeBtnHtml = `<button>X</button>`;
+body.insertAdjacentHTML('afterbegin', divHtml);
+
+const divBouton = document.querySelector('body div');
+divBouton.insertAdjacentHTML("afterbegin", btnHtml);
+const btn = document.querySelector('body div button')
+
+function onClick(btn) {
     divBouton.insertAdjacentHTML("beforeend", popupHtml + closeBtnHtml);
+    divAtt = document.createAttribute('id');
+    divAtt.value = 'btnDiv';
+    document.querySelector('body div').setAttributeNode(divAtt);
+
     const popupAtt = document.createAttribute('class');
     const closeBtnAtt = document.createAttribute('class');
-    closeBtnAtt.value = 'closeBtn';
-    const pText = document.querySelector('#btn p');
-    const closeBtnLast = divBtn.lastElementChild;
-    closeBtnLast.setAttributeNode(closeBtnAtt);
     popupAtt.value = "popup";
+    closeBtnAtt.value = 'closeBtn';
+    const closeBtn = document.querySelector('#btnDiv').lastChild;
+    closeBtn.setAttributeNode(closeBtnAtt)
+
+    const pText = document.querySelector('#btnDiv p');
     pText.setAttributeNode(popupAtt);
     pText.style.display = "flex";
     pText.style.justifyContent = "center";
     pText.style.alignItems = "center";
-    function closeClick(closeBtnLast){
+
+    function closeClick(closeBtn) {
         divBouton.removeChild(pText);
-        divBouton.removeChild(divBouton.lastElementChild);
+        divBouton.removeChild(closeBtn);
     }
-    closeBtnLast.addEventListener('click', () => {
-      closeClick()  
+
+    closeBtn.addEventListener('click', () => {
+        closeClick(closeBtn)
     })
 }
 
-btn.addEventListener('click', () =>{
-    onClick()
+btn.addEventListener('click', () => {
+    onClick(btn)
 })
